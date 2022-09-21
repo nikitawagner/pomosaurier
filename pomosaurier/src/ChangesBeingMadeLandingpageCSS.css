@@ -1,0 +1,20 @@
+.outsideContainer {
+    height: 100vh;
+    background: linear-gradient(
+        rgba(0, 0, 0, 0.5), 
+        rgba(0, 0, 0, 0.5)
+      ),
+      url("../public/img/backgroundMaintenance.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.outsideContainer p {
+    font-weight: 100;
+    color: white;
+    font-size: xx-large;
+}
