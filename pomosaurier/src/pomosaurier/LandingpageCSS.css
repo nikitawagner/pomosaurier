@@ -74,3 +74,14 @@
     font-weight: lighter;
     font-size: 3vh;
 }
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+}
+
+.footer a {
+    color: #000000;
+    text-decoration: none;
+}

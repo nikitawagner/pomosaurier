@@ -8,6 +8,7 @@ import ButtonRow from "./ButtonRow";
 import Dinosaur from "./Dinosaur";
 import Header from "./Header";
 import TimeShow from "./TimeShow";
+import Footer from "./Footer";
 
 export default function Landingpage() {
   const [numTimer, setNumTimer] = useState(0);
@@ -87,7 +88,6 @@ export default function Landingpage() {
   const notifyWork = () => {
     setNotifiedWork(true);
     setNumTimer((numTimer + 1) % 8);
-    console.log((numTimer + 1) % 8);
   };
 
   const backgroundColors = ["#FBF2CF", "#937DC2", "#F7A76C"];
@@ -187,6 +187,7 @@ export default function Landingpage() {
           styleDino={styleDino}
           currentStyle={currentStyle}
         />
+        <Footer />
       </div>
     </>
   );
