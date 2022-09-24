@@ -1,47 +1,51 @@
 import Button from "react-bootstrap/esm/Button";
 import "./LandingpageCSS.css";
 
+import { FiSettings } from "react-icons/fi";
+import {
+  BsFillPlayFill,
+  BsFillSkipEndFill,
+  BsFillPauseFill,
+} from "react-icons/bs";
+import { GrPowerReset } from "react-icons/gr";
+
 export default function ButtonRow({
   setShow,
   run,
   setRun,
   resetCountdown,
   notifyWork,
+  styleDino,
+  currentStyle,
 }) {
   return (
     <div style={{ display: "flex", justifyContent: "center" }}>
-      <Button
-        onClick={() => setShow(true)}
-        variant="secondary"
-        size="sm"
-        className="m-2 settingsButton button"
-      >
-        settings
-      </Button>
-      <Button
-        onClick={() => (run ? setRun(false) : setRun(true))}
-        variant={run ? "warning" : "success"}
-        size="sm"
-        className="m-2 pauseButton button"
-      >
-        {run ? "pause" : "start"}
-      </Button>
-      <Button
-        onClick={() => resetCountdown()}
-        variant="danger"
-        size="sm"
-        className="m-2 resetButton button"
-      >
-        reset
-      </Button>
-      <Button
-        onClick={() => notifyWork()}
-        variant="secondary"
-        size="sm"
-        className="m-2 skipButton button"
-      >
-        skip
-      </Button>
+      <div className="buttonRow">
+        <div
+          className={styleDino[currentStyle].name + " button"}
+          onClick={() => setShow(true)}
+        >
+          <FiSettings size={25} />
+        </div>
+        <div
+          className={styleDino[currentStyle].name + " button"}
+          onClick={() => (run ? setRun(false) : setRun(true))}
+        >
+          {run ? <BsFillPauseFill size={25} /> : <BsFillPlayFill size={25} />}
+        </div>
+        <div
+          className={styleDino[currentStyle].name + " button"}
+          onClick={() => resetCountdown()}
+        >
+          <GrPowerReset size={25} />
+        </div>
+        <div
+          className={styleDino[currentStyle].name + " button"}
+          onClick={() => notifyWork()}
+        >
+          <BsFillSkipEndFill size={25} />
+        </div>
+      </div>
     </div>
   );
 }

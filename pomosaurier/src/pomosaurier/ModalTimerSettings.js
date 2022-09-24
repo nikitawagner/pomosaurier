@@ -1,6 +1,5 @@
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import InputGroup from "react-bootstrap/InputGroup";
 import Form from "react-bootstrap/Form";
 
 export default function ModalTimerSettings({
@@ -65,7 +64,7 @@ export default function ModalTimerSettings({
         onClick={handleSubmit}
         variant="success"
       >
-        Confirm
+        set new times
       </Button>
       <Modal.Footer>
         <Button onClick={onHide} size="lg" variant="danger">

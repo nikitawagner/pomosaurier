@@ -1,3 +1,76 @@
 .button {
-    width: 20%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.buttonRow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+}
+
+.outsideDiv {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.blue {
+    border-radius: 5px;
+    background: #C6DCE4;
+    box-shadow:   2px 2px 4px #a8bbc2,
+     -2px -2px 4px #e4fdff;
+    margin: 8px;
+}
+
+.beige {
+    border-radius: 5px;
+    background: #F7EDDB;
+    box-shadow:   2px 2px 4px #d2c9ba,
+     -2px -2px 4px #fffffc;
+    margin: 8px;
+
+}
+
+.orange {
+    border-radius: 5px;
+    background: #E5CB9F;
+    box-shadow:   2px 2px 4px #c3ad87,
+    -2px -2px 4px #ffe9b7;
+    margin: 8px;
+
+}
+
+.headerOutsideDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-size: 4vh;
+    font-weight: lighter;
+}
+
+.headerOutsideDiv span {
+    font-size: 8vh;
+    font-weight: lighter;
+}
+
+.workBreakTimerText {
+    font-size: 5vh;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.workBreakTimerText span {
+    font-weight: lighter;
+    font-size: 3vh;
 }

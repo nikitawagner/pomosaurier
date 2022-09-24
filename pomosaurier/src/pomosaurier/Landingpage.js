@@ -2,10 +2,12 @@ import { useState } from "react";
 
 import CountdownTotal from "../countdown/CountdownTotal";
 import CountdownWorkBreak from "../countdown/CountdownWorkBreak";
-import useDebounce from "../hooks/useDebounce";
 import ModalTimerSettings from "./ModalTimerSettings";
 import "./LandingpageCSS.css";
 import ButtonRow from "./ButtonRow";
+import Dinosaur from "./Dinosaur";
+import Header from "./Header";
+import TimeShow from "./TimeShow";
 
 export default function Landingpage() {
   const [numTimer, setNumTimer] = useState(0);
@@ -88,43 +90,104 @@ export default function Landingpage() {
     console.log((numTimer + 1) % 8);
   };
 
+  const backgroundColors = ["#FBF2CF", "#937DC2", "#F7A76C"];
+
+  const [currentStyle, setCurrentStyle] = useState(0);
+  const styleDino = [
+    {
+      name: "beige",
+      backgroundColor: "#F7EDDB",
+      picture: "/img/DinoGreenOnBeige.png",
+      shadow1: "#d2c9ba",
+      shadow2: "#fffffc",
+      shadowCombined: "7px 7px 14px #d2c9ba, -7px -7px 14px #fffffc",
+    },
+    {
+      name: "orange",
+      backgroundColor: "#E5CB9F",
+      picture: "/img/DinoBlueOnOrange.png",
+      shadow1: "#c3ad87",
+      shadow2: "#ffe9b7",
+      shadowCombined: "7px 7px 14px #c3ad87, -7px -7px 14px #ffe9b7",
+    },
+    {
+      name: "blue",
+      backgroundColor: "#C6DCE4",
+      picture: "/img/DinoPinkOnBlue.png",
+      shadow1: "#a8bbc2",
+      shadow2: "#e4fdff",
+      shadowCombined: "7px 7px 14px #a8bbc2, -7px -7px 14px #e4fdff",
+    },
+  ];
+  const arrowRight = () => {
+    if (currentStyle < styleDino.length - 1) {
+      setCurrentStyle(currentStyle + 1);
+    }
+  };
+
+  const arrowLeft = () => {
+    if (currentStyle > 0) {
+      setCurrentStyle(currentStyle - 1);
+    }
+  };
   return (
     <>
-      <CountdownTotal
-        totalTimeMin={timers.total}
-        run={run}
-        reset={reset}
-        notify={() => notifyTotal()}
-      />
-      <CountdownWorkBreak
-        timers={timers}
-        run={run}
-        reset={reset}
-        notify={() => notifyWork()}
-        numTimer={numTimer}
-      />
+      <div
+        className="outsideDiv"
+        style={{ backgroundColor: styleDino[currentStyle].backgroundColor }}
+      >
+        <Header
+          totalTimeMin={timers.total}
+          run={run}
+          reset={reset}
+          notify={() => notifyTotal()}
+          timers={timers}
+          notifyTotal={() => notifyTotal()}
+        />
+        <Dinosaur
+          styles={styleDino}
+          currentStyle={currentStyle}
+          arrowLeft={() => arrowLeft()}
+          arrowRight={() => arrowRight()}
+          styleLength={styleDino.length}
+        />
 
-      <ModalTimerSettings
-        show={show}
-        onHide={() => setShow(false)}
-        handleChangeBreak={(e) => handleChangeBreak(e)}
-        handleChangeLongBreak={(e) => handleChangeLongBreak(e)}
-        handleChangeWork={(e) => handleChangeWork(e)}
-        handleChangeTotal={(e) => handleChangeTotal(e)}
-        handleSubmit={() => handleSumbit()}
-        workTime={timers.work}
-        breakTime={timers.break}
-        longBreakTime={timers.longBreak}
-        totalTime={timers.total}
+        <TimeShow
+          timers={timers}
+          run={run}
+          reset={reset}
+          notify={() => notifyWork()}
+          numTimer={numTimer}
+          notifyWork={() => notifyWork()}
+          CountdownWorkBreak={CountdownWorkBreak}
+        />
 
-      />
-      <ButtonRow
-        resetCountdown={() => resetCountdown()}
-        run={run}
-        setRun={(v) => setRun(v)}
-        setShow={(b) => setShow(b)}
-        notifyWork={() => notifyWork()}
-      />
+        <ModalTimerSettings
+          show={show}
+          onHide={() => setShow(false)}
+          handleChangeBreak={(e) => handleChangeBreak(e)}
+          handleChangeLongBreak={(e) => handleChangeLongBreak(e)}
+          handleChangeWork={(e) => handleChangeWork(e)}
+          handleChangeTotal={(e) => handleChangeTotal(e)}
+          handleSubmit={() => handleSumbit()}
+          workTime={timers.work}
+          breakTime={timers.break}
+          longBreakTime={timers.longBreak}
+          totalTime={timers.total}
+        />
+
+        <ButtonRow
+          resetCountdown={() => resetCountdown()}
+          run={run}
+          setRun={(v) => setRun(v)}
+          setShow={(b) => setShow(b)}
+          notifyWork={() => notifyWork()}
+          arrowRight={() => arrowRight()}
+          arrowLeft={() => arrowLeft()}
+          styleDino={styleDino}
+          currentStyle={currentStyle}
+        />
+      </div>
     </>
   );
 }

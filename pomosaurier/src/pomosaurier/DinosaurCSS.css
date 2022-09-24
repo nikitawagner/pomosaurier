@@ -1,0 +1,22 @@
+.outsideContainerDinosaur {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+
+.outsideContainerDinosaur img {
+    max-width: 70vw;
+    max-height: 50vh;
+}
+
+.arrow {
+    cursor: pointer;
+}
+
+.arrow:hover {
+    transform: scale(1.3);
+}
+
