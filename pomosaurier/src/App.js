@@ -8,8 +8,8 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<ChangesBeingMadeLandingpage />} />
-          <Route path="/test" element={<Landingpage />} />
+          <Route path="/changes" element={<ChangesBeingMadeLandingpage />} />
+          <Route path="/" element={<Landingpage />} />
         </Routes>
       </BrowserRouter>
     </>
