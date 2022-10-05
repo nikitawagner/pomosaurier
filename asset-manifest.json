@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/pomosaurier/static/css/main.05eb58cd.css",
+    "main.js": "/pomosaurier/static/js/main.ccc47f1a.js",
+    "static/js/787.5454fea1.chunk.js": "/pomosaurier/static/js/787.5454fea1.chunk.js",
+    "static/media/backgroundMaintenance.jpg": "/pomosaurier/static/media/backgroundMaintenance.a1380af66a21c72644e0.jpg",
+    "index.html": "/pomosaurier/index.html",
+    "main.05eb58cd.css.map": "/pomosaurier/static/css/main.05eb58cd.css.map",
+    "main.ccc47f1a.js.map": "/pomosaurier/static/js/main.ccc47f1a.js.map",
+    "787.5454fea1.chunk.js.map": "/pomosaurier/static/js/787.5454fea1.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.05eb58cd.css",
+    "static/js/main.ccc47f1a.js"
+  ]
+}
