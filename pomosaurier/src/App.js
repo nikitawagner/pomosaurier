@@ -10,6 +10,7 @@ function App() {
         <Routes>
           <Route path="/changes" element={<ChangesBeingMadeLandingpage />} />
           <Route path="/pomosaurier" element={<Landingpage />} />
+          <Route path="/" element={<Landingpage />} />
         </Routes>
       </BrowserRouter>
     </>
