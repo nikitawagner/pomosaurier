@@ -21,7 +21,10 @@ export default function Dinosaur({
         />
       )}
 
-      <img src={styles[currentStyle].picture} alt="dinosaur picture" />
+      <img
+        src={process.env.PUBLIC_URL + styles[currentStyle].picture}
+        alt="dinosaur"
+      />
 
       {currentStyle < styleLength - 1 ? (
         <AiOutlineArrowRight className="arrow" size={30} onClick={arrowRight} />
