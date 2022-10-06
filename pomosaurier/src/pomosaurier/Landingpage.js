@@ -24,6 +24,13 @@ export default function Landingpage() {
     longBreak: 10,
   });
 
+  const [colorsInputs, setColorsInput] = useState({
+    total: "bg-white",
+    work: "bg-white",
+    break: "bg-white",
+    longBreak: "bg-white",
+  });
+
   const [newWork, setNewWork] = useState(0);
   const [newBreak, setNewBreak] = useState(0);
   const [newLongBreak, setNewLongBreak] = useState(0);
@@ -52,18 +59,22 @@ export default function Landingpage() {
     setNewTotal(e.target.value);
   };
 
+  const [invalidInput, setInvalidInput] = useState(false);
+
   const handleSumbit = () => {
     let newTimers = {
-      total: newTotal !== 0 ? newTotal : timers.total,
-      work: newWork !== 0 ? newWork : timers.work,
-      break: newBreak !== 0 ? newBreak : timers.break,
-      longBreak: newLongBreak !== 0 ? newLongBreak : timers.longBreak,
+      total: newTotal > 0 && newTotal <= 1440 ? newTotal : timers.total,
+      work: newWork > 0 && newTotal <= 1440 ? newWork : timers.work,
+      break: newBreak > 0 && newTotal <= 1440 ? newBreak : timers.break,
+      longBreak:
+        newLongBreak > 0 && newTotal <= 1440 ? newLongBreak : timers.longBreak,
     };
 
     setTimers(newTimers);
 
     setShow(false);
     resetNewTimers();
+    resetCountdown();
   };
 
   const resetCountdown = () => {
@@ -82,7 +93,6 @@ export default function Landingpage() {
     setNotifiedTotal(true);
     setRun(false);
     resetCountdown();
-    console.log("totalCounter 0");
   };
 
   const notifyWork = () => {

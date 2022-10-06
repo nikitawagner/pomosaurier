@@ -1,6 +1,7 @@
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
+import InputForm from "./InputForm";
 
 export default function ModalTimerSettings({
   show,
@@ -22,49 +23,42 @@ export default function ModalTimerSettings({
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
-      <Form.Group className="p-2">
-        <Form.Label>Total Worktime in Minutes</Form.Label>
-        <Form.Control
-          onChange={(e) => handleChangeTotal(e)}
-          type="number"
-          size="lg"
-          placeholder={totalTime}
-        />
-      </Form.Group>
-      <Form.Group className="p-2">
-        <Form.Label>Worktime in Minutes</Form.Label>
-        <Form.Control
-          onChange={(e) => handleChangeWork(e)}
-          type="number"
-          size="lg"
-          placeholder={workTime}
-        />
-      </Form.Group>
-      <Form.Group className="p-2">
-        <Form.Label>Breaktime in Minutes</Form.Label>
-        <Form.Control
-          onChange={(e) => handleChangeBreak(e)}
-          type="number"
-          size="lg"
-          placeholder={breakTime}
-        />
-      </Form.Group>
-      <Form.Group className="p-2">
-        <Form.Label>Longbreaktime in Minutes</Form.Label>
-        <Form.Control
-          onChange={(e) => handleChangeLongBreak(e)}
-          type="number"
-          size="lg"
-          placeholder={longBreakTime}
-        />
-      </Form.Group>
+      <InputForm
+        color={"bg-white"}
+        onChange={(e) => handleChangeTotal(e)}
+        title={"Total Worktime in Minutes"}
+        value={totalTime}
+        min={1}
+      />
+      <InputForm
+        color={"bg-white"}
+        onChange={(e) => handleChangeWork(e)}
+        title={"Worktime in Minutes"}
+        value={workTime}
+        min={1}
+      />
+      <InputForm
+        color={"bg-white"}
+        onChange={(e) => handleChangeBreak(e)}
+        title={"Breaktime in Minutes"}
+        value={breakTime}
+        min={1}
+      />
+
+      <InputForm
+        color={"bg-white"}
+        onChange={(e) => handleChangeLongBreak(e)}
+        title={"Longbreaktime in Minutes"}
+        value={longBreakTime}
+        min={1}
+      />
       <Button
         size="lg"
         className="m-2"
         onClick={handleSubmit}
         variant="success"
       >
-        set new times
+        change timers
       </Button>
       <Modal.Footer>
         <Button onClick={onHide} size="lg" variant="danger">
