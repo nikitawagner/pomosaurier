@@ -1,8 +1,14 @@
 import { useState } from "react";
 import Countdown from "./Countdown";
 
-export default function CountdownWorkBreak({ timers, run, reset, notify, numTimer }) {
-
+export default function CountdownWorkBreak({
+  timers,
+  run,
+  reset,
+  notify,
+  numTimer,
+  notificationPermission,
+}) {
   return (
     <Countdown
       timeInSec={
@@ -25,6 +31,8 @@ export default function CountdownWorkBreak({ timers, run, reset, notify, numTime
       run={run}
       reset={reset}
       notify={notify}
+      notificationPermission={notificationPermission}
+      numTimer={numTimer}
     />
   );
 }

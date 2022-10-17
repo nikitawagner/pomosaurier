@@ -6,6 +6,7 @@ export default function TimeShow({
   numTimer,
   notifyWork,
   CountdownWorkBreak,
+  notificationPermission,
 }) {
   return (
     <div className="workBreakTimerText">
@@ -31,6 +32,7 @@ export default function TimeShow({
         run={run}
         reset={reset}
         notify={() => notifyWork()}
+        notificationPermission={notificationPermission}
         numTimer={numTimer}
       />
     </div>

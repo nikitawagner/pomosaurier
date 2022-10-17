@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import CountdownTotal from "../countdown/CountdownTotal";
 import CountdownWorkBreak from "../countdown/CountdownWorkBreak";
@@ -9,14 +9,17 @@ import Dinosaur from "./Dinosaur";
 import Header from "./Header";
 import TimeShow from "./TimeShow";
 import Footer from "./Footer";
+import Alter from "./Alert";
 
 export default function Landingpage() {
+  const [notificationPermission, setNotificationPermission] = useState(false);
   const [numTimer, setNumTimer] = useState(0);
   const [notifiedTotal, setNotifiedTotal] = useState(false);
   const [notifiedWork, setNotifiedWork] = useState(false);
   const [reset, setReset] = useState(false);
   const [run, setRun] = useState(false);
   const [show, setShow] = useState(false);
+  const img = process.env.PUBLIC_URL + "/img/DinoGreenOnBeige.png";
   const [timers, setTimers] = useState({
     total: 180,
     work: 20,
@@ -35,6 +38,27 @@ export default function Landingpage() {
   const [newBreak, setNewBreak] = useState(0);
   const [newLongBreak, setNewLongBreak] = useState(0);
   const [newTotal, setNewTotal] = useState(0);
+  const [showAlert, setShowAlert] = useState(true);
+
+  useEffect(() => {
+    if (Notification.permission !== "granted") {
+      Notification.requestPermission().then(() => {
+        setNotificationPermission(true);
+        showNotification(
+          "I will notify you when your break or working-phase has started :)"
+        );
+      });
+    } else {
+      setNotificationPermission(true);
+    }
+  }, []);
+
+  function showNotification(bodyText) {
+    const notification = new Notification("POMOSAUR!", {
+      body: bodyText,
+      icon: img,
+    });
+  }
 
   const resetNewTimers = () => {
     setNewBreak(0);
@@ -44,19 +68,19 @@ export default function Landingpage() {
   };
 
   const handleChangeWork = (e) => {
-    setNewWork(e.target.value);
+    setNewWork(parseFloat(e.target.value));
   };
 
   const handleChangeBreak = (e) => {
-    setNewBreak(e.target.value);
+    setNewBreak(parseFloat(e.target.value));
   };
 
   const handleChangeLongBreak = (e) => {
-    setNewLongBreak(e.target.value);
+    setNewLongBreak(parseFloat(e.target.value));
   };
 
   const handleChangeTotal = (e) => {
-    setNewTotal(e.target.value);
+    setNewTotal(parseFloat(e.target.value));
   };
 
   const [invalidInput, setInvalidInput] = useState(false);
@@ -65,9 +89,18 @@ export default function Landingpage() {
     let newTimers = {
       total: newTotal > 0 && newTotal <= 1440 ? newTotal : timers.total,
       work: newWork > 0 && newTotal <= 1440 ? newWork : timers.work,
-      break: newBreak > 0 && newTotal <= 1440 ? newBreak : timers.break,
+      break:
+        newBreak > 0 && newTotal <= 1440
+          ? newBreak === newWork || newBreak === timers.work
+            ? newBreak - 0.05
+            : newBreak
+          : timers.break,
       longBreak:
-        newLongBreak > 0 && newTotal <= 1440 ? newLongBreak : timers.longBreak,
+        newLongBreak > 0 && newTotal <= 1440
+          ? newLongBreak === newWork || newLongBreak === timers.work
+            ? newLongBreak + 0.05
+            : newLongBreak
+          : timers.longBreak,
     };
 
     setTimers(newTimers);
@@ -93,6 +126,7 @@ export default function Landingpage() {
     setNotifiedTotal(true);
     setRun(false);
     resetCountdown();
+    showNotification("You have finished your learning session! Good Job!");
   };
 
   const notifyWork = () => {
@@ -154,6 +188,7 @@ export default function Landingpage() {
           timers={timers}
           notifyTotal={() => notifyTotal()}
         />
+        <Alter show={showAlert} setShow={(value) => setShowAlert(value)} />
         <Dinosaur
           styles={styleDino}
           currentStyle={currentStyle}
@@ -170,6 +205,7 @@ export default function Landingpage() {
           numTimer={numTimer}
           notifyWork={() => notifyWork()}
           CountdownWorkBreak={CountdownWorkBreak}
+          notificationPermission={notificationPermission}
         />
 
         <ModalTimerSettings
