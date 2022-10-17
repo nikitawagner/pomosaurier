@@ -29,6 +29,11 @@
     margin: 8px;
 }
 
+.blue:hover {
+    box-shadow:   inset 2px 2px 4px #a8bbc2,
+     inset -2px -2px 4px #e4fdff;
+}
+
 .beige {
     border-radius: 5px;
     background: #F7EDDB;
@@ -38,6 +43,11 @@
 
 }
 
+.beige:hover {
+    box-shadow:   inset 2px 2px 4px #d2c9ba,
+     inset -2px -2px 4px #fffffc;
+}
+
 .orange {
     border-radius: 5px;
     background: #E5CB9F;
@@ -45,6 +55,11 @@
     -2px -2px 4px #ffe9b7;
     margin: 8px;
 
+}
+
+.orange:hover {
+    box-shadow:   inset 2px 2px 4px #c3ad87,
+    inset -2px -2px 4px #ffe9b7;
 }
 
 .headerOutsideDiv {
